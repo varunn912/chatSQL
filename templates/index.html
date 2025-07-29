@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatSQL 🦜</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Settings</h2>
+            <form id="settings-form">
+                <div class="form-group">
+                    <label for="api-key">Groq API Key</label>
+                    <input type="password" id="api-key" placeholder="Loaded from .env file">
+                    <small>Leave blank to use key from your `.env` file.</small>
+                </div>
+                
+                <h3>Database Connection</h3>
+                <div class="radio-group">
+                    <input type="radio" id="sqlite" name="db_type" value="sqlite" checked>
+                    <label for="sqlite">SQLite</label>
+                </div>
+                <div class="radio-group">
+                    <input type="radio" id="mysql" name="db_type" value="mysql">
+                    <label for="mysql">MySQL</label>
+                </div>
+
+                <div id="mysql-config" class="hidden">
+                    <div class="form-group">
+                        <label for="mysql-host">Host</label>
+                        <input type="text" id="mysql-host" placeholder="e.g., localhost">
+                    </div>
+                    <div class="form-group">
+                        <label for="mysql-user">User</label>
+                        <input type="text" id="mysql-user" placeholder="e.g., root">
+                    </div>
+                    <div class="form-group">
+                        <label for="mysql-password">Password</label>
+                        <input type="password" id="mysql-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="mysql-db">Database</label>
+                        <input type="text" id="mysql-db" placeholder="e.g., employees">
+                    </div>
+                </div>
+            </form>
+        </aside>
+
+        <main class="chat-container">
+            <header class="chat-header">
+                <h1>ChatSQL</h1>
+                <p>Talk to your database in natural language.</p>
+            </header>
+            <div id="chat-box" class="chat-box">
+                <div class="message assistant-message">
+                    <p>Hello! How can I help you query your database today?</p>
+                </div>
+            </div>
+            <footer class="chat-input-area">
+                <form id="chat-form">
+                    <input type="text" id="user-input" placeholder="e.g., 'How many students are in the Data Science class?'" autocomplete="off" required>
+                    <button type="submit">Send</button>
+                </form>
+            </footer>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
